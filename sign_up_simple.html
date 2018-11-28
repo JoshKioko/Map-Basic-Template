@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="./jquery-1.11.3.min.js"></script>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+        .sign-up-page {
+            width: 360px;
+            padding: 8% 0 0;
+            margin: auto;
+        }
+
+        .form {
+            position: relative;
+            z-index: 1;
+            background: #FFFFFF;
+            max-width: 360px;
+            margin: 0 auto 100px;
+            padding: 45px;
+            text-align: center;
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+        }
+
+        .form input {
+            font-family: "Roboto", sans-serif;
+            outline: 0;
+            background: #f2f2f2;
+            width: 100%;
+            border: 0;
+            margin: 0 0 15px;
+            padding: 15px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        .form button {
+            font-family: "Roboto", sans-serif;
+            text-transform: uppercase;
+            outline: 0;
+            background: #af6357;
+            width: 100%;
+            border: 0;
+            padding: 15px;
+            color: #FFFFFF;
+            font-size: 14px;
+            -webkit-transition: all 0.3 ease;
+            transition: all 0.3 ease;
+            cursor: pointer;
+        }
+
+        .form button:hover, .form button:active, .form button:focus {
+            background: #43A047;
+        }
+
+        .form .message {
+            margin: 15px 0 0;
+            color: #b3b3b3;
+            font-size: 12px;
+        }
+
+        .form .message a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .container .info h1 {
+            margin: 0 0 15px;
+            padding: 0;
+            font-size: 36px;
+            font-weight: 300;
+            color: #1a1a1a;
+        }
+
+        .container .info span {
+            color: #4d4d4d;
+            font-size: 12px;
+        }
+
+        .container .info span a {
+            color: #000000;
+            text-decoration: none;
+        }
+
+        .container .info span .fa {
+            color: #EF3B3A;
+        }
+
+        body {
+            background: url(https://superdevresources.com/wp-content/uploads/2015/12/new-york-background.jpg) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            font-family: "Roboto", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        input[type=button] {
+            font-size: 16px;
+            background: linear-gradient(#d42eff 5%, #ffbaba 100%);
+            border: 1px solid #e5870f;
+            color: #4E4D4B;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 5px;
+            padding: 10px 0;
+            outline: none;
+        }
+    </style>
+
+</head>
+<body>
+<div class="sign-up-page">
+    <div class="form">
+        <form class="register-form">
+            <button>Sign up</button>
+            <input type="text" id="theName" placeholder="user name"/>
+            <input type="password" id="passCode" placeholder="password"/>
+            <input type="password" id="secretWord" placeholder="repeat password"/>
+            <input type="text" id="email" placeholder="email address"/>
+            <input type="button" value="Create Account" id="submit" onclick="createAccount()"/>
+            <button>Sign In</button>
+            <input type="text" id="tnm" placeholder="name"/>
+            <input type="password" id="pwd" placeholder="password"/>
+            <input type="button" value="Login" id="doubleCheck" onclick="checkAccount()"/>
+            <!--<button>create</button>-->
+            <p class="message">Already registered? <a href="aticasKenya.html">Sign In</a></p>
+        </form>
+    </div>
+</div>
+<script>
+    function createAccount() {
+        // alert('Create Account Button Clicked!');
+        let identity = document.getElementById("theName").value;
+        // console.log(document.getElementById('theName').value);
+        let secretKey = document.getElementById("passCode").value;
+        let pass = document.getElementById("secretWord").value;
+        let mail = document.getElementById("email").value;
+        if (secretKey.value === pass.value) {
+            localStorage.setItem('theName', identity.value);
+            localStorage.setItem('passCode', secretKey.value);
+            localStorage.setItem('secretWord', pass.value);
+            localStorage.setItem('email', mail.value);
+            alert('account created successfully, please proceed and login');
+
+            // console.log('we have stored your credentials');
+            // console.log(localStorage.getItem('theName').value);
+            // localStorage.setItem('passCode', secretKey.value);
+            // localStorage.setItem('secretWord', pass.value);
+            // localStorage.setItem('email', mail.value);
+            // localStorage.setItem('name', name.value);
+            // let storedIdentity = localStorage.getItem('theName');
+            // let storedKey = localStorage.getItem('passCode');
+            // localStorage.setItem('pw', pw.value);
+            // localStorage.setItem('name', name.value);
+            // localStorage.setItem('pw', pw.value);
+        }
+        else {
+            alert('passwords do not match!');
+        }
+        // function checkAccount() {
+    }
+
+    function checkAccount() {
+        let storedName = localStorage.getItem('theName');
+        let storedPwd = localStorage.getItem('passCode');
+        let jina = document.getElementById('tnm').value;
+        let key = document.getElementById('pwd').value;
+        console.log('we are now checking your account');
+        if (jina.value === storedName.value && key.value === storedPwd.value) {
+            // && key.value === storedPwd
+            alert('you are now logged in!');
+            window.location = 'dashboard.html'
+        }
+        else {
+            alert('error, something went wrong!');
+        }
+    }
+</script>
+</body>
+
+</html>
